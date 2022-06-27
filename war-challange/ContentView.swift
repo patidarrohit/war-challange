@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var playerCard = "card2"
+    @State var playerCard = "back"
     @State var playerScore = 0
-    @State var cpuCard = "card3"
+    @State var cpuCard = "back"
     @State var cpuScore = 0
     var body: some View {
         ZStack{
@@ -25,23 +25,6 @@ struct ContentView: View {
                     Spacer()
                     Image(cpuCard)
                     Spacer()
-                }
-                Spacer()
-                Button {
-                    let playerRand = Int.random(in: 2...14)
-                    let cpuRand = Int.random(in: 2...14)
-                    
-                    playerCard = "card" + String(playerRand)
-                    cpuCard = "card" + String(cpuRand)
-                    
-                    if playerRand > cpuRand{
-                        playerScore += 1
-                    } else if playerRand < cpuRand{
-                        cpuScore += 1
-                    }
-                    
-                } label: {
-                    Image("dealbutton")
                 }
                 Spacer()
                 HStack{
@@ -66,6 +49,35 @@ struct ContentView: View {
                     Spacer()
                 }
                 Spacer()
+                Button {
+                    let playerRand = Int.random(in: 2...14)
+                    let cpuRand = Int.random(in: 2...14)
+                    
+                    playerCard = "card" + String(playerRand)
+                    cpuCard = "card" + String(cpuRand)
+                    
+                    if playerRand > cpuRand{
+                        playerScore += 1
+                    } else if playerRand < cpuRand{
+                        cpuScore += 1
+                    }
+                    
+                } label: {
+                    Image("dealbutton")
+                }
+                Spacer()
+                Button {
+                    playerCard = "back"
+                    cpuCard = "back"
+                    playerScore = 0
+                    cpuScore = 0
+                    
+                } label: {
+                    Text("Reset")
+                        .font(.title2)
+                        .foregroundColor(Color.white)
+                }
+
 
             }
         }
